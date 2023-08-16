@@ -3,7 +3,9 @@ var gamePattern = [];
 var userPattern = [];
 var started = false;
 var level = 0;
+var currMode = "light";
 
+starter();
 
 function starter(){
     $(document).keypress(function(){
@@ -15,18 +17,32 @@ function starter(){
 }
 
 function restart(){
-    started = false;
-    level = 0;
-    userPattern = [];
     gamePattern = [];
+    userPattern = [];
+    level = 0;
+    started = false;
 }
 
-starter();
+$("#mode").click(function(){
+    if (currMode == "light"){
+        document.querySelector("body").classList.add("darkmode");
+        document.querySelector("h1").classList.add("h1dark");
+        document.querySelector("#mode").innerHTML="Light Mode";
+        currMode = "dark";
+    }
+    else{
+        document.querySelector("body").classList.remove("darkmode");
+        document.querySelector("h1").classList.remove("h1dark");
+        document.querySelector("#mode").innerHTML="Dark Mode";
+        currMode = "light";
+    }
+
+});
 
 function lighten(nextBox){
     $("#"+nextBox).css({
         "opacity":"0.3",
-        "border": "10px solid #3d3b3b"
+        // "border": "10px solid #3d3b3b"
     });
     
     var audio = new Audio('sounds/'+nextBox+'.mp3');
@@ -35,7 +51,7 @@ function lighten(nextBox){
     setTimeout(function(){
         $("#"+nextBox).css({
             "opacity":"1",
-            "border": "10px solid black"
+            // "border": "10px solid black"
         });
     }, 150);
 }
@@ -61,7 +77,7 @@ $("#green,#red,#yellow,#blue").click(function(){
         "box-shadow": "0px 0px 12px 5px #635693",
         "height": "220px",
         "width": "220px",
-        "margin":"10px",
+        "margin":"-5px",
         "opacity": "0.6"
     });    
     
@@ -73,7 +89,7 @@ $("#green,#red,#yellow,#blue").click(function(){
             "box-shadow": "0px 0px 0px 0px",
             "height": "200px",
             "width": "200px",
-            "margin": "20px",
+            "margin": "5px",
             "opacity": "1"
         });        
         
@@ -87,11 +103,13 @@ $("#green,#red,#yellow,#blue").click(function(){
         }
         else{
             var audio = new Audio('sounds/wrong.mp3');
-            $("h1").html("Game Over! Press any key to restart");
+            $("h1").html("Game Over! Press a key to restart");
             audio.play();
             restart();
             starter();
         }
     }
+
+
 
 });
