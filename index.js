@@ -4,12 +4,24 @@ var userPattern = [];
 var started = false;
 var level = 0;
 
-$(document).keypress(function(){
-    if (started == false){
-        nextSequence();
-    }
-    started = true;
-});
+
+function starter(){
+    $(document).keypress(function(){
+        if (started == false){
+            nextSequence();
+        }
+        started = true;
+    });
+}
+
+function restart(){
+    started = false;
+    level = 0;
+    userPattern = [];
+    gamePattern = [];
+}
+
+starter();
 
 function lighten(nextBox){
     $("#"+nextBox).css({
@@ -75,8 +87,10 @@ $("#green,#red,#yellow,#blue").click(function(){
         }
         else{
             var audio = new Audio('sounds/wrong.mp3');
-            $("h1").html("Game Over!");
+            $("h1").html("Game Over! Press any key to restart");
             audio.play();
+            restart();
+            starter();
         }
     }
 
