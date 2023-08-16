@@ -42,7 +42,6 @@ $("#mode").click(function(){
 function lighten(nextBox){
     $("#"+nextBox).css({
         "opacity":"0.3",
-        // "border": "10px solid #3d3b3b"
     });
     
     var audio = new Audio('sounds/'+nextBox+'.mp3');
@@ -51,7 +50,6 @@ function lighten(nextBox){
     setTimeout(function(){
         $("#"+nextBox).css({
             "opacity":"1",
-            // "border": "10px solid black"
         });
     }, 150);
 }
@@ -65,13 +63,13 @@ function nextSequence(){
     var randomColor = buttonColors[ind];
     gamePattern.push(randomColor);
     lighten(randomColor);
-    // nextSequence();
 }
 
 
 $("#green,#red,#yellow,#blue").click(function(){
     userPattern.push(this.id);
-    // console.log(userPattern);
+
+    // this.classList.add("clicked");
 
     $(this).css({
         "box-shadow": "0px 0px 12px 5px #635693",
@@ -85,6 +83,7 @@ $("#green,#red,#yellow,#blue").click(function(){
     audio.play();
 
     setTimeout(() => {
+        // this.classList.remove("clicked");
         $(this).css({
             "box-shadow": "0px 0px 0px 0px",
             "height": "200px",

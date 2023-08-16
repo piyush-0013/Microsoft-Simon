@@ -25,14 +25,17 @@ h1{
     transition: 80ms;
 }
 
-.clicked{
-    background-color: grey;
-    border-radius: 100px;
-}
+/* .clicked{
+    box-shadow: 0px 0px 12px 5px #635693;
+    height: 220px;
+    width: 220px;
+    margin:-5px;
+    opacity: 0.6;
+} */
 
 #mode{
-    height: 25px;
-    width: 100px;
+    height: 22px;
+    width: 80px;
     box-shadow: 0px 0px 3px;
     margin: 10px;
 }
@@ -62,3 +65,15 @@ h1{
     background-color: #ffb900;
 }
 
+@media (max-width: 768px){
+    h1{
+        font-size: 30px;
+        line-height: 40px;
+        margin: 60px 13px 70px 13px;
+    }
+    #mode{
+        width: 100px;
+        height: 25px;
+        font-size: 15px;
+    }
+}
