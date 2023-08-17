@@ -4,6 +4,7 @@ var userPattern = [];
 var started = false;
 var level = 0;
 var currMode = "light";
+var index = 0;
 
 starter();
 
@@ -20,6 +21,7 @@ function restart(){
     gamePattern = [];
     userPattern = [];
     level = 0;
+    index = 0;
     started = false;
 }
 
@@ -52,6 +54,8 @@ function lighten(nextBox){
             "opacity":"1",
         });
     }, 150);
+
+    index = 0;
 }
 
 
@@ -94,20 +98,26 @@ $("#green,#red,#yellow,#blue").click(function(){
         
     }, 100);
 
-    if (gamePattern.length == userPattern.length){
-        if (gamePattern.toString() === userPattern.toString()){
-            setTimeout(function(){
-                nextSequence();
-            },320);
-        }
-        else{
-            var audio = new Audio('sounds/wrong.mp3');
-            $("h1").html("Game Over! Press a key to restart");
-            audio.play();
-            restart();
-            starter();
-        }
+    if (started == true && gamePattern[index] != userPattern[index]){
+        var audio = new Audio('sounds/wrong.mp3');
+        $("h1").html("Game Over! Press a key to restart");
+        audio.play();
+        restart();
+        starter();
     }
+    index++;
+    if (gamePattern.length == userPattern.length){
+        setTimeout(function(){ 
+            nextSequence();
+        },320);
+
+    }
+    // if (gamePattern.length == userPattern.length){
+    //     if (gamePattern.toString() === userPattern.toString()){
+    //     }
+    //     else{
+    //     }
+    // }
 
 
 
