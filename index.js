@@ -102,8 +102,10 @@ $("#green,#red,#yellow,#blue").click(function(){
         var audio = new Audio('sounds/wrong.mp3');
         $("h1").html("Game Over! Press a key to restart");
         audio.play();
-        restart();
-        starter();
+        $(document).keypress(function(){
+            starter();
+            restart();
+        });
     }
     index++;
     if (gamePattern.length == userPattern.length){
